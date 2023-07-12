@@ -1,0 +1,17 @@
+#!/bin/bash
+
+# Update package repositories
+sudo apt update
+
+# Install unzip
+sudo apt install -y unzip
+
+# Install tree
+sudo apt install -y tree
+
+# Install nano
+sudo apt install -y nano
+
+# Install vim
+sudo apt install -y vim
+
