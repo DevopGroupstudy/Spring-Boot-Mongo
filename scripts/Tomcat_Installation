@@ -1,0 +1,17 @@
+#!/bin/bash
+sudo hostnamectl set-hostname tomcat
+cd /opt
+sudo yum install wget unzip -y
+sudo yum install java-11-openjdk-devel -y
+sudo wget https://dlcdn.apache.org/tomcat/tomcat-9/v9.0.71/bin/apache-tomcat-9.0.71.tar.gz
+sudo tar -xvf apache-tomcat-9.0.71.tar.gz
+sudo rm -rf apache-tomcat-9.0.71.tar.gz
+sudo mv apache-tomcat-9.0.71 tomcat
+sudo chmod 777 -R /opt/tomcat
+sudo sh /opt/tomcat/bin/startup.sh
+sudo ln -s /opt/tomcat/bin/startup.sh     /usr/bin/starttomcat
+sudo ln -s /opt/tomcat/bin/shutdown.sh     /usr/bin/stoptomcat
+sed -i '21,22 s/^/<!-- /;21,22 s/$/ -->/' /opt/tomcat/webapps/manager/META-INF/context.xml
+sed -i '56i\<user username="kunle" password="12345" roles="manager-gui"/>' /opt/tomcat/conf/tomcat-users.xml
+sudo stoptomcat && sudo starttomcat
+ps -ef | grep tomcat
