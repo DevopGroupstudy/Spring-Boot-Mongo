@@ -1,10 +1,9 @@
-FROM tomcat:8-jre8-alpine
+FROM openjdk:22-ea-7
 
 WORKDIR /app
 
-COPY target/spring-boot-mongo-1.0.jar /app
+COPY target/spring-boot-mongo-1.0.jar .
 
 EXPOSE 8080
 
-CMD ["java", "-jar", "/app/spring-boot-mongo-1.0.jar"]
-
+CMD ["java", "-jar", "./spring-boot-mongo-1.0.jar"]
